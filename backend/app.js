@@ -11,7 +11,7 @@ const swaggerSetup = require("./swagger");
 const todoRoutes = require('./routes/todo');//ToDo関連のルート
 const authRoutes = require('./routes/auth');//認証関連のルート
 const app = express();
-const PORT = process.env.PORT || 3000; //環境変数がなければ3000番を使用
+const PORT = process.env.PORT || 3001; //環境変数がなければ3000番を使用
 
 app.use(express.json()); // JSONデータを受け取るためのミドルウェア
 app.use(cors()); // フロントエンドからのアクセスを許可

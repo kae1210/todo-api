@@ -113,7 +113,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
   
-    // パスワードをハッシュ化している場合、usernameだけで検索する！
+    // パスワードをハッシュ化している場合、usernameだけで検索する
     db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
         if (err || results.length === 0) {
             console.log("ログインエラー: ユーザーが見つかりません");
@@ -129,7 +129,7 @@ router.post('/login', (req, res) => {
             return res.status(401).json({ message: "パスワードが間違っています。" });
         }
 
-        const jwt = require('jsonwebtoken'); // 必要なら上にrequireを追加
+        
         const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.json({ token });
