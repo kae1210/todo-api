@@ -8,10 +8,12 @@
 - [Todoアプリのデモ動画](https://drive.google.com/file/d/1ykmnTIuxI9tMvJBRJGHxy1Wb8q9CzMNn/view?usp=drive_link)
 
 ## 構成
+```bash
 ToDo-app
 ├── backend
 ├── frontend
 └── README.md
+```
 
 ##  機能一覧
 - ユーザー登録／ログイン（JWT認証）
