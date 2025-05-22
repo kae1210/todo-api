@@ -95,7 +95,7 @@ router.get('/todos', authenticateJWT, (req, res) => {
 
 router.post('/todos', authenticateJWT, (req, res) => {
     const { title } = req.body;
-    const userId = req.user.id; // JWTから取得
+    const userId = req.user.id;
   
     db.query(
       'INSERT INTO todos (title, completed, user_id) VALUES (?, ?, ?)',

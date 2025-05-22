@@ -42,7 +42,7 @@ const App = () => {
             isAuthenticated ? <Todo onLogout={handleLogout} /> : <Navigate to="/login" />
           }
         />
-        {/* 初期アクセス時にリダイレクト */}
+
         <Route
           path="/"
           element={<Navigate to={isAuthenticated ? "/todos" : "/login"} />}

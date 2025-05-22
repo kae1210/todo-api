@@ -6,8 +6,8 @@ const Register = ({ onRegisterSuccess }) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
       const res = await fetch('http://localhost:3001/register', {
@@ -45,11 +45,11 @@ const Register = ({ onRegisterSuccess }) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>ユーザー名:</label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <input type="text" value={username} onChange={(event) => setUsername(event.target.value)} required />
         </div>
         <div>
           <label>パスワード:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
         </div>
         <button type="submit">登録</button>
       </form>

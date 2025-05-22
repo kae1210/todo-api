@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = process.env.JWT_SECRET;
 
-// 1JWT検証ミドルウェア
+
 const authenticateJWT = (req, res, next) => {
-  const token = req.header('Authorization')?.split(' ')[1]; // "Bearer token" の形式
+  const token = req.header('Authorization')?.split(' ')[1];
 
   if (!token) {
       return res.status(401).json({ message: '認証トークンが必要です' });
@@ -11,8 +11,8 @@ const authenticateJWT = (req, res, next) => {
 
   try {
       const decoded = jwt.verify(token, SECRET_KEY);
-      req.user = decoded; // ユーザー情報をリクエストオブジェクトに格納
-      next(); // 次のミドルウェア or ルート処理へ
+      req.user = decoded; 
+      next(); 
   } catch (err) {
       return res.status(401).json({ message: '無効なトークンです' });
   }

@@ -65,7 +65,7 @@ router.post('/register', (req, res) => {
 
     db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword], (err) => {
         if (err) {
-            console.error('DB挿入エラー:', err.sqlMessage); // ← ここでエラー詳細をログ出力
+            console.error('DB挿入エラー:', err.sqlMessage); 
             return res.status(500).json({ message: "登録に失敗しました。" });
         }
         res.json({ message: "ユーザー登録成功！" });
@@ -113,7 +113,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
   
-    // パスワードをハッシュ化している場合、usernameだけで検索する
+    
     db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
         if (err || results.length === 0) {
             console.log("ログインエラー: ユーザーが見つかりません");
@@ -122,7 +122,6 @@ router.post('/login', (req, res) => {
 
         const user = results[0];
 
-        // パスワードをbcryptで検証
         const isMatch = bcrypt.compareSync(password, user.password);
         if (!isMatch) {
             console.log("ログインエラー: パスワード不一致");

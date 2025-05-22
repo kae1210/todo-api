@@ -9,7 +9,7 @@ export const Todo = ({ onLogout }) => {
   const [incompleteTodos, setIncompleteTodos] = useState([])
   const [completeTodos, setCompleteTodos] = useState([])
   const [error, setError] = useState(null);
-  // ToDo一覧を取得
+  
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -25,7 +25,6 @@ export const Todo = ({ onLogout }) => {
           throw new Error('ToDoの取得に失敗しました');
         const data = await response.json();
 
-        // ここで未完了・完了に分類
         const incomplete = data.filter((todo) => todo.completed === 0);
         const complete = data.filter((todo) => todo.completed === 1);
 
@@ -63,7 +62,7 @@ export const Todo = ({ onLogout }) => {
         throw new Error("ToDoの追加に失敗しました");
       }
   
-      const newTodo = await response.json(); // ← サーバーが返す新しいToDo
+      const newTodo = await response.json(); 
       setIncompleteTodos([...incompleteTodos, newTodo]);
       setTodoText("");
     } catch (err) {
@@ -108,14 +107,13 @@ export const Todo = ({ onLogout }) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ title: targetTodo.title, completed: true }) // ← 完了に更新
+        body: JSON.stringify({ title: targetTodo.title, completed: true }) 
       });
   
       if (!response.ok) {
         throw new Error('完了状態の更新に失敗しました');
       }
   
-      // 更新成功 → 完了リストへ移動
       const updatedTodo = { ...targetTodo, completed: true };
       const newIncompleteTodos = [...incompleteTodos];
       newIncompleteTodos.splice(index, 1);
@@ -139,7 +137,7 @@ export const Todo = ({ onLogout }) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ title: targetTodo.title, completed: false }) // ← 未完了に戻す
+      body: JSON.stringify({ title: targetTodo.title, completed: false }) 
     });
 
     if (!response.ok) {

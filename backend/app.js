@@ -1,27 +1,25 @@
-require('dotenv').config();          //.env から環境変数を読み込む
-
+require('dotenv').config();          
 console.log('環境変数の読み込み完了');
 
-const express = require('express');  //Webサーバー
-const mysql = require('mysql2');     //DB操作
-const cors = require('cors');        //フロントエンドとの通信用
-const bcrypt = require('bcryptjs'); //パスワードのハッシュ化
+const express = require('express');      
+const cors = require('cors');         
 const db = require('./db');
 const swaggerSetup = require("./swagger");
-const todoRoutes = require('./routes/todo');//ToDo関連のルート
-const authRoutes = require('./routes/auth');//認証関連のルート
-const app = express();
-const PORT = process.env.PORT || 3001; //環境変数がなければ3000番を使用
+const todoRoutes = require('./routes/todo');
+const authRoutes = require('./routes/auth');
 
-app.use(express.json()); // JSONデータを受け取るためのミドルウェア
-app.use(cors()); // フロントエンドからのアクセスを許可
+const app = express();
+const PORT = process.env.PORT || 3001; 
+
+app.use(express.json()); 
+app.use(cors());
 
 swaggerSetup(app);
 
-app.use('/', todoRoutes);// ルーティングの適用
+app.use('/', todoRoutes);
 app.use('/', authRoutes);
 
-// データベース接続
+
 db.connect(err => {
   if (err) {
     console.error('MySQL接続エラー:', err);

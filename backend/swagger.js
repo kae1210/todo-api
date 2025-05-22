@@ -27,7 +27,7 @@ const options = {
       }
     }
   },
-  apis: ['./routes/auth.js', './routes/todo.js'], // ルートファイルのパスを設定
+  apis: ['./routes/auth.js', './routes/todo.js'],
 };
 
 const swaggerSpec = swaggerJsDoc(options);

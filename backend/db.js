@@ -1,5 +1,4 @@
 const mysql = require('mysql2');
-const SECRET_KEY = process.env.JWT_SECRET; // .env に保存した秘密鍵を dotenv を使って読み込む
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
